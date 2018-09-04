@@ -1,0 +1,9 @@
+#!/bin/bash
+
+for x in $(ls source/*.txt)
+do 
+alpha=`tail -n+3 $x |head -1 |sed 's/Date\: //g' `
+beta=`date -d "$alpha" +%Y-%m-%dT%H%M%S`
+cp $x output/"$beta".txt
+echo renamed $beta
+done
