@@ -1,5 +1,11 @@
 #!/bin/bash
 
+#link all the specrad files to the source directory
+find /home/users/jgroves/ncas_obs/amf/raw_data/ncas-spectral-radiometer-2/data/2017* -maxdepth 1 -name "*.txt" -exec ln -sfv {} 2017 \;
+
+#exit 1
+
+#read the date from the source file and make a copy to output with a new isodate name.
 for x in $(ls source/*.txt)
 do 
 alpha=`tail -n+3 $x |head -1 |sed 's/Date\: //g' `
