@@ -1,15 +1,17 @@
 #!/bin/bash
 
 #link all the specrad files to the source directory
-find /home/users/jgroves/ncas_obs/amf/raw_data/ncas-spectral-radiometer-2/data/2017* -maxdepth 1 -name "*.txt" -exec ln -sfv {} 2017 \;
+#find /home/users/jgroves/ncas_obs/amf/raw_data/ncas-spectral-radiometer-2/data/2017* -maxdepth 1 -name "*.txt" -exec ln -sfv {} 2017 \;
 
 #exit 1
 
+
 #read the date from the source file and make a copy to output with a new isodate name.
-for x in $(ls source/*.txt)
+for x in $(find /home/users/jgroves/ncas_obs/amf/raw_data/ncas-spectral-radiometer-2/data -name "*.txt")
 do 
-alpha=`tail -n+3 $x |head -1 |sed 's/Date\: //g' `
-beta=`date -d "$alpha" +%Y-%m-%dT%H%M%S`
-cp $x output/"$beta".txt
-echo renamed $beta
+echo $x
+#alpha=`tail -n+3 $x |head -1 |sed 's/Date\: //g' `
+#beta=`date -d "$alpha" +%Y-%m-%dT%H%M%S`
+#cp $x output/"$beta".txt
+#echo renamed $beta
 done
