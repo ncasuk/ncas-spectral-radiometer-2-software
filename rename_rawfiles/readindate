@@ -4,7 +4,9 @@
 for x in $(find /home/users/jgroves/ncas_obs/amf/raw_data/ncas-spectral-radiometer-2/data -name "*.txt")
 do 
 echo $x
+#read in the date from the head of the file
 alpha=`tail -n+3 $x |head -1 |sed 's/Date\: //g' `
+#set new date format
 beta=`date -d "$alpha" +%Y-%m-%dT%H%M%S`
 cp $x output/"$beta".txt
 echo renamed $beta
